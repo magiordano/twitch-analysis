@@ -56,11 +56,15 @@ module.exports={
       
       },
 
+      higherAverage: higherAverage = async (twitch, mongo) => {
+        
 
+      }
 
+         
+    } 
 
-    
+  
 
-}
 
 
