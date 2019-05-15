@@ -1,5 +1,6 @@
 const express = require('express')
 const app = express()
+require('dotenv').config();
 const services = require('./services')
 const monk = require('monk')
 var cors = require('cors')
