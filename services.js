@@ -1,5 +1,5 @@
 const fetch = require('node-fetch');
-const key = process.env.twitchApiKey
+const key = process.env.TWITCH_API
 
 const fetchNewUsers = async (urlString) =>{
 

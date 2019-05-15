@@ -6,8 +6,7 @@ const monk = require('monk')
 var cors = require('cors')
 //const fetch = require('node-fetch');
 const port = process.env.PORT||5000 
-const url = ENV['mongourl']
-const db = monk(url);
+const db = monk(process.env.MONGO_URL);
 db.then(() => {
   console.log('Connected correctly to server')
 })
