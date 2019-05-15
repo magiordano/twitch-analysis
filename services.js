@@ -1,11 +1,11 @@
 const fetch = require('node-fetch');
-
+const key = process.env.twitchApiKey
 const fetchNewUsers = async (urlString) =>{
 
     let newStreams = await fetch(urlString, {
         method: 'get',
         headers: {
-          'Client-ID': '7zkh4ut355tznqbv75vc1dsflxiu0v'
+          'Client-ID': key
         },
       }).then(res => res.json())
       
@@ -35,7 +35,7 @@ module.exports={
         let arr = await fetch('https://api.twitch.tv/helix/streams/?first=100', {
             method: 'get',
             headers: {
-              'Client-ID': '7zkh4ut355tznqbv75vc1dsflxiu0v'
+              'Client-ID': key
             },
           })
           .then(res => res.json())
@@ -45,7 +45,7 @@ module.exports={
         let arr2 = await fetch('https://api.twitch.tv/helix/streams/?first=100&after=' + pagination, {
             method: 'get',
             headers: {
-              'Client-ID': '7zkh4ut355tznqbv75vc1dsflxiu0v'
+              'Client-ID': key
             },
           })
           .then(res => res.json())
