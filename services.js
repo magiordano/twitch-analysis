@@ -1,12 +1,11 @@
 const fetch = require('node-fetch');
-const key = process.env.TWITCH_API
 
 const fetchNewUsers = async (urlString) =>{
 
     let newStreams = await fetch(urlString, {
         method: 'get',
         headers: {
-          'Client-ID': key
+          'Client-ID': '7zkh4ut355tznqbv75vc1dsflxiu0v'
         },
       }).then(res => res.json())
       
@@ -36,7 +35,7 @@ module.exports={
         let arr = await fetch('https://api.twitch.tv/helix/streams/?first=100', {
             method: 'get',
             headers: {
-              'Client-ID': key
+              'Client-ID': '7zkh4ut355tznqbv75vc1dsflxiu0v'
             },
           })
           .then(res => res.json())
@@ -46,7 +45,7 @@ module.exports={
         let arr2 = await fetch('https://api.twitch.tv/helix/streams/?first=100&after=' + pagination, {
             method: 'get',
             headers: {
-              'Client-ID': key
+              'Client-ID': '7zkh4ut355tznqbv75vc1dsflxiu0v'
             },
           })
           .then(res => res.json())
@@ -58,13 +57,24 @@ module.exports={
       },
 
       higherAverage: higherAverage = async (twitch, mongo) => {
-        
 
-      }
+        avgUrl = 'https://api.twitch.tv/helix/streams?'
+        for(let i =0; i<twitch.length;i++){
+          for(let x=0; x<mongo.length;x++){
+            if(twitch[i].user_id === mongo[x].user_id){
+                if((twitch[i].viewer_count / mongo[x].average_viewers) > 1.75){
+                    avgUrl += 'user_id=' + twitch[i].user_id + '&'
+                }
 
+          }
+            
+        }
          
+      }
+          return fetchNewUsers(avgUrl)
+     
     } 
-
+  }
   
 
 
