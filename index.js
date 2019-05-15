@@ -17,19 +17,7 @@ app.use(cors())
 //successful query for date -30 
 //
 app.get('/', async (req, res) => {
-  let dateRemove = new Date();
-  dateRemove.setDate(dateRemove.getDate() - 1);
-  console.log(dateRemove)
-  await collection.find({
-      'data.date': {
-        $lte: dateRemove
-      }
-    })
-    .then((docs) => {
-      res.send(docs)
-    })
-
-
+  res.send("success")
 })
 
 app.get('/sendResults', async (req, res) => {
@@ -52,7 +40,20 @@ app.get('/sendResults', async (req, res) => {
 })
 
 
+// let dateRemove = new Date();
+// dateRemove.setDate(dateRemove.getDate() - 1);
+// console.log(dateRemove)
+// await collection.find({
+//     'data.date': {
+//       $lte: dateRemove
+//     }
+//   })
+//   .then((docs) => {
+//     res.send(docs)
+//   })
 
+
+// }
 
 // app.get('/analysis', async (req, res) => {
 //   //next, find average viewers of streams and see 
