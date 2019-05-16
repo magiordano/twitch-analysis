@@ -21,7 +21,9 @@ module.exports={
         mongoUserIds = mongo.map((ele => ele.user_id))
 
         const newUsers =  newUserIds.filter(user => !mongoUserIds.includes(user))
-
+        if (newUsers.length ===0){
+          return "No new users";
+        }
         //generate api string
         for(let i=0;i<newUsers.length;i++){
             urlString += "user_id="+  newUsers[i] + "&"

@@ -30,7 +30,7 @@ app.get('/sendResults', async (req, res) => {
   //streamers on request
   const newResults = await services.getTwitchData();
   collection.find({},'user_id').then(async (mongo) =>{
-  let newStreams = await services.findNewStreamers(newResults,mongo); 
+  const newStreams = await services.findNewStreamers(newResults,mongo); 
 
   
 
