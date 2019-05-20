@@ -20,7 +20,7 @@ app.get('/', async (req, res) => {
  
   res.send("hello")
 
-})
+});
 
 app.get('/sendResults', async (req, res) => {
   //fetch twitch
@@ -36,10 +36,10 @@ app.get('/sendResults', async (req, res) => {
 
     res.send (newStreams);
 
-  })
+  });
   //find if any new streamers
 
-})
+});
 
 
 
@@ -48,7 +48,7 @@ app.get('/higherAverage', async (req, res) => {
   //next, find average viewers of streams and see 
   //if there are any trends
   const newResults = await services.getTwitchData();
-  newUserIds = newResults.map((ele => ele.user_id))
+  newUserIds = newResults.map((ele => ele.user_id));
 
 
   collection.find({'user_id':{ $in: newUserIds }}).then(async (mongo) =>{
@@ -57,10 +57,10 @@ app.get('/higherAverage', async (req, res) => {
   
 
     res.send (higherAverageUsers);
-  })
-})
+  });
+});
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 
 
 // let dateRemove = new Date();
@@ -70,7 +70,7 @@ app.listen(port, () => console.log(`Example app listening on port ${port}!`))
 //     'data.date': {
 //       $lte: dateRemove
 //     }
-//   })
+//   });
 //   .then((docs) => {
 //     res.send(docs)
-//   })
+//   });
