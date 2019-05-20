@@ -18,7 +18,7 @@ app.use(cors())
 //
 app.get('/', async (req, res) => {
  
-  res.send("hello")
+  res.send("hello");
 
 });
 
