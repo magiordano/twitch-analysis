@@ -16,11 +16,7 @@ app.use(cors())
 //
 //successful query for date -30 
 //
-app.get('/', async (req, res) => {
- 
-  res.send("hello");
 
-});
 
 app.get('/sendResults', async (req, res) => {
   //fetch twitch
