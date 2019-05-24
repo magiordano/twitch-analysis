@@ -10,7 +10,7 @@ const db = monk(url);
 db.then(() => {
   console.log('Connected correctly to server')
 })
-collection = db.get('collection');
+const collection = db.get('collection');
 
 app.use(cors())
 //
