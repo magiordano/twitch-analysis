@@ -13,9 +13,6 @@ db.then(() => {
 const collection = db.get('collection');
 
 app.use(cors())
-//
-//successful query for date -30 
-//
 
 app.get('/', async (req, res) => {
  
@@ -62,17 +59,34 @@ app.get('/higherAverage', async (req, res) => {
   });
 });
 
+app.get('/removeDate', async (req, res) => {
+
+  let dateRemove = new Date();
+  dateRemove.setDate(dateRemove.getDate() - 30);
+  await collection.find({
+      'data.date': {
+        $lte: dateRemove
+      }  
+    })
+    .then((docs) => {
+      for(let i = 0; i <docs.length; i++){
+        for(let x = 0; x<docs[i].data.length; x++){
+          if(docs[i].data[x].date < dateRemove){
+            if(docs[i].data[x].length <= 1){
+              await collection.remove({user_id: docs[i].user_id})
+            } else         
+            await collection.update({
+              user_id: docs[i].user_id
+            },
+            {$pop: {data: -1}}
+            ) 
+          }
+          }     
+        }
+    })
+       await db.close();
+})
+
+
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 
-
-// let dateRemove = new Date();
-// dateRemove.setDate(dateRemove.getDate() - 1);
-// console.log(dateRemove)
-// await collection.find({
-//     'data.date': {
-//       $lte: dateRemove
-//     }
-//   });
-//   .then((docs) => {
-//     res.send(docs)
-//   });
